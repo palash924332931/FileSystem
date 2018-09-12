@@ -29,11 +29,13 @@ namespace FileSystem.Repositories
             String[] linesB = File.ReadAllLines(file2);
 
             IEnumerable<String> onlyB = linesB.Except(linesA);
+            IEnumerable<String> onlyA = linesA.Except(linesB);
             if (!File.Exists(Path.Combine(directory, "Result.txt"))) {
                 System.IO.Directory.CreateDirectory(directory);
                 //File.Create(Path.Combine(directory, "Result.txt"));
             }
             File.WriteAllLines(Path.Combine(directory, "Result.txt"), onlyB);
+            File.WriteAllLines(Path.Combine(directory, "Result2.txt"), onlyA);
             Console.WriteLine("File Comparision completed");
         }
 
